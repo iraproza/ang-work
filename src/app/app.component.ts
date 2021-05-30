@@ -6,64 +6,17 @@ class Item{
     description: string;
      
     constructor(topic: string, description: string, image: string) {
-  
+
         this.topic = topic;
         this.description = description;
         this.image = image;
-
     }
 }
  
 @Component({
-    selector: 'purchase-app',
-    template: `
-    <div class='container'>
-        <div class="page-header">
-            <h1> News </h1>
-        </div>
-        <div class=" row">
-            <div class="form-inline col-12">
-                <div class="form-group ">
-                    <div class="">
-                        <input class="form-control" [(ngModel)]="topic" placeholder = "topic" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="">
-                        <input class="form-control" [(ngModel)]="description" placeholder="description" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="">
-                        <input class="form-control" [(ngModel)]="image" placeholder="image" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="">
-                        <button class="btn btn-dark" (click)="addItem(topic, description, image)">Add</button>
-                    </div>
-                </div>
-            </div>
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Topic</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of items">
-                        <td>
-                            <img src={{item.image}}>
-                        </td>
-                        <td>{{item.topic}}</td>
-                        <td>{{item.description}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>`
+    selector: 'app-post',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 
 
@@ -81,8 +34,8 @@ export class AppComponent {
     ];
     addItem(topic: string, description: string, image: string): void {
          
-        if(topic==null || description == null || image==null)
+        if(topic == null || description == null || image == null)
             return;
-        this.items.push(new Item(topic, description, image));
+        this.items.unshift(new Item(topic, description, image));
     }
 }
